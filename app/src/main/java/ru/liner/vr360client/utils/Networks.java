@@ -44,4 +44,8 @@ public class Networks {
         Matcher matcher = pattern.matcher(host);
         return matcher.find();
     }
+
+    public static String getHost(InetAddress inetAddress){
+        return inetAddress.getHostAddress().replaceFirst("/", "");
+    }
 }
