@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "VR360Client"
-include ':app', ':ijkplayerlibrary', ':fastvideoplayer'
+include ':app'

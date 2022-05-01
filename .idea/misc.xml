@@ -3,9 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable-v24/background_button.xml" value="0.16718146718146717" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button.xml" value="0.16718146718146717" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button_default.xml" value="0.16718146718146717" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button_focused.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button_pressed.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_seek_bar_translucent.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/ic_received_24.xml" value="0.169140625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/loading_bg.xml" value="0.121875" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/seek_bar_background_fill.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/activity_connection.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/activity_main.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/app_bar.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/content_main.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/main.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/media_format_dialog.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_activity.xml" value="0.11171875" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_ui.xml" value="0.11171875" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/menu/activity_main_drawer.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/menu/menu_main.xml" value="0.15703125" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/googlevr/src/main/res/layout/video_ui.xml" value="0.25" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Plater/app/src/main/res/drawable/circle.xml" value="0.10364583333333334" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Plater/app/src/main/res/drawable/empty_tall_divider.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Plater/app/src/main/res/drawable/ic_baseline_arrow_right_24.xml" value="0.16770833333333332" />
@@ -26,5 +44,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressABINotification">
+    <option name="modulesWithSuppressedNotConfigured">
+      <set>
+        <option value="VR360Client.app" />
+      </set>
+    </option>
   </component>
 </project>

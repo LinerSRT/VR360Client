@@ -1,174 +1,117 @@
 package ru.liner.vr360client.activity;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.os.Environment;
+import android.view.View;
+import android.view.WindowManager;
 
-import com.hengyi.fastvideoplayer.library.FastVideoPlayer;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-import java.net.InetAddress;
+import com.xojot.vrplayer.Media;
+import com.xojot.vrplayer.VrView;
 
-import ru.liner.vr360client.CoreActivity;
+import java.io.File;
+
 import ru.liner.vr360client.R;
-import ru.liner.vr360client.tcp.IMulticastCallback;
-import ru.liner.vr360client.tcp.ITCPCallback;
 import ru.liner.vr360client.tcp.TCPClient;
-import ru.liner.vr360client.tcp.TCPDevice;
 import ru.liner.vr360client.tcp.UDPMulticast;
-import ru.liner.vr360client.utils.Constant;
-import ru.liner.vr360client.utils.Networks;
-import ru.liner.vr360client.views.LImageButton;
+import ru.liner.vr360client.utils.Worker;
 
 
-public class MainActivity extends CoreActivity implements ITCPCallback {
-    private FastVideoPlayer videoPlayer;
-    private TextView logView;
-    private TCPClient tcpClient;
-    private UDPMulticast udpMulticast;
-    private LImageButton syncDevicesButton;
+@SuppressWarnings("unused")
+public class MainActivity extends AppCompatActivity implements View.OnSystemUiVisibilityChangeListener {
+    private VrView vrView;
+    private Worker vrModeChanger;
+    private WindowManager windowManager;
+    private boolean isInVRMode;
+    private int pausePosition;
 
-    private void setupSocketConnection() throws IOException {
-        udpMulticast = new UDPMulticast(Constant.SERVER_IP_PUBLISHER_HOST, Constant.SERVER_MULTICAST_PORT);
-        udpMulticast.setMulticastCallback(new IMulticastCallback() {
-            @Override
-            public void onReceived(String data) {
-                if (Networks.isValidHost(data) && tcpClient == null) {
-                    tcpClient = new TCPClient(data, Constant.SERVER_TCP_CONNECTION_PORT);
-                    tcpClient.connect(MainActivity.this);
-                }
-            }
-        });
-        udpMulticast.start();
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @SuppressLint("ClickableViewAccessibility")
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
         setContentView(R.layout.activity_main);
-        logView = findViewById(R.id.logView);
-        videoPlayer = findViewById(R.id.videoPlayer);
-        syncDevicesButton = findViewById(R.id.syncDevicesButton);
-        videoPlayer.setLive(true);
-        videoPlayer.setScaleType(FastVideoPlayer.SCALETYPE_16_9);
-        videoPlayer.setTitle("");
-        videoPlayer.setHideControl(true);
-
-
-        try {
-            setupSocketConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Cannot create stable connection! Try again later.", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        syncDevicesButton.setClickCallback(new LImageButton.Callback() {
+        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        this.vrView = findViewById(R.id.vrView);
+        vrModeChanger = new Worker() {
             @Override
-            public void onClick(LImageButton button) {
-                try {
-                    setupSocketConnection();
-                    if(tcpClient != null)
-                        tcpClient.connect(MainActivity.this);
-                } catch (IOException e) {
-                    e.printStackTrace();
+            public void execute() {
+                if (vrView.isPrepared()) {
+                    runOnUiThread(() -> {
+                        int rotation = windowManager.getDefaultDisplay().getRotation();
+                        setRequestedOrientation((rotation == 0 || rotation == 1) ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                        vrView.setSensorMotion(true);
+                        vrView.setHmd(true);
+                        vrView.setProjectionType(Media.ProjectionType.EQUIRECTANGULAR);
+                        vrView.setStereoType(Media.StereoType.MONO);
+                        vrView.setCameraReset(true);
+                        vrView.setViewChanged(true);
+                        if (vrView.isCameraReset()) {
+                            vrModeChanger.stop();
+                            vrView.seekTo(0);
+
+                        } else {
+                            execute();
+                        }
+                    });
                 }
             }
-        });
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!udpMulticast.isRunning())
-            udpMulticast.start();
-    }
+            @Override
+            public long delay() {
+                return 16;
+            }
+        };
+        vrModeChanger.start();
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (udpMulticast.isRunning())
-            udpMulticast.stop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (tcpClient.isConnected())
-            tcpClient.getDevice().send("disconnect");
-    }
-
-    @Override
-    public void onConnected(TCPDevice device) {
-        udpMulticast.stop();
-        appendLog("Connection with http:/" + device.getInetAddress().toString() + " successful!");
-    }
-
-    @Override
-    public void onDisconnected(InetAddress inetAddress) {
-        udpMulticast.start();
-    }
-
-    @Override
-    public void onConnectionFailed(InetAddress inetAddress) {
-        Toast.makeText(this, "Connection with http:/" + inetAddress.toString() + " failed!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onReceived(InetAddress inetAddress, byte[] data) {
-
-    }
-
-    @Override
-    public void onReceived(InetAddress inetAddress, String data) {
-        switch (data) {
-            case "play":
-                appendLog(data + " http://" + Networks.getHost(inetAddress) + ":" + Constant.SERVER_STREAM_VIDEO_PORT);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (TextUtils.isEmpty(videoPlayer.getUrl()))
-                            videoPlayer.setUrl("http://" + Networks.getHost(inetAddress) + ":" + Constant.SERVER_STREAM_VIDEO_PORT);
-                        videoPlayer.play();
-                    }
-                });
-                break;
-            case "pause":
-                appendLog(data + " http://" + Networks.getHost(inetAddress) + ":" + Constant.SERVER_STREAM_VIDEO_PORT);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        videoPlayer.pause();
-                    }
-                });
-                break;
-            case "stop":
-                appendLog(data + " http://" + Networks.getHost(inetAddress) + ":" + Constant.SERVER_STREAM_VIDEO_PORT);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        videoPlayer.stop();
-                    }
-                });
-                break;
-            case "disconnect":
-                appendLog("Disconnected from: http:/" + inetAddress.toString() + " successful!");
-                tcpClient.getDevice().send("disconnect");
-                videoPlayer.stop();
-                videoPlayer.hide(true);
-                break;
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "sample360.mp4");
+        if(file.exists()) {
+            setContent(Uri.fromFile(file));
+        } else {
+            //setContent(Uri.parse("http://192.168.1.143:8888/"));
         }
     }
 
+    private void setContent(Uri uri) {
+        vrView.setDataSource(uri);
+        vrView.setAutoPanning(false);
+        vrView.setCameraReset(false);
+        //vrView.setDoFrameStart();
+        vrModeChanger.start();
+    }
 
-    private void appendLog(String text) {
-        Log.d("ClientVR", text);
-        logView.post(new Runnable() {
-            @Override
-            public void run() {
-                logView.setText(String.format("%s%s\n", logView.getText().toString(), text));
-            }
-        });
+
+    @Override
+    public void onResume() {
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(this);
+        setFullScreen();
+        super.onResume();
+        vrView.onResume();
+        vrView.seekTo(pausePosition);
+    }
+
+
+    private void setFullScreen() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(4870);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        vrView.pause();
+        pausePosition = vrView.getCurrentPosition();
+        vrView.onPause();
+    }
+
+    @Override
+    public void onSystemUiVisibilityChange(int i) {
+        if ((i & 4) == 0) {
+            setFullScreen();
+        }
     }
 }
