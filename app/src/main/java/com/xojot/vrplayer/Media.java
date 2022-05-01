@@ -101,7 +101,6 @@ public class Media implements MediaController.MediaPlayerControl, MediaPlayer.On
     }
 
     private void initMedia() {
-        long currentTimeMillis = System.currentTimeMillis();
         isPrepared = false;
         if (mediaPlayer != null) {
             mediaPlayer.stop();
@@ -118,7 +117,6 @@ public class Media implements MediaController.MediaPlayerControl, MediaPlayer.On
             e.printStackTrace();
         }
         mediaPlayer.prepareAsync();
-        Log.d("TAGTAG", "initMedia: "+(System.currentTimeMillis()-currentTimeMillis));
     }
 
 

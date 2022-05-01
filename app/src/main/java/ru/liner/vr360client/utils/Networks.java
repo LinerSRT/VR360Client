@@ -1,5 +1,8 @@
 package ru.liner.vr360client.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
@@ -37,15 +40,26 @@ public class Networks {
         }
     }
 
-    public static boolean isValidHost(String host){
-        if(TextUtils.isEmpty(host))
+    public static boolean isValidHost(String host) {
+        if (TextUtils.isEmpty(host))
             return false;
         Pattern pattern = Pattern.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
         Matcher matcher = pattern.matcher(host);
         return matcher.find();
     }
 
-    public static String getHost(InetAddress inetAddress){
+    public static String getHost(InetAddress inetAddress) {
         return inetAddress.getHostAddress().replaceFirst("/", "");
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        boolean isConnected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            if (activeNetwork != null)
+                isConnected = activeNetwork.isConnectedOrConnecting();
+        }
+        return isConnected;
     }
 }

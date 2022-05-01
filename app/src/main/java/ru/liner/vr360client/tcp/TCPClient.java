@@ -9,7 +9,7 @@ import java.net.Socket;
  * @created : 28.04.2022, четверг
  **/
 public class TCPClient implements Runnable {
-    private ITCPCallback itcpCallback;
+    private SocketCallback socketCallback;
     private final int port;
     private final String host;
     private TCPDevice device;
@@ -19,15 +19,15 @@ public class TCPClient implements Runnable {
         this.host = host;
     }
 
-    public void connect(ITCPCallback itcpCallback) {
-        this.itcpCallback = itcpCallback;
+    public void connect(SocketCallback socketCallback) {
+        this.socketCallback = socketCallback;
         new Thread(this).start();
     }
 
     @Override
     public void run() {
         try {
-            device = new TCPDevice(new Socket(host, port), itcpCallback);
+            device = new TCPDevice(new Socket(host, port), socketCallback);
             device.start();
         } catch (Exception e) {
             e.printStackTrace();
