@@ -19,7 +19,7 @@ public class CoreActivity extends AppCompatActivity {
     @CallSuper
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ViewUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.accentColor));
+        ViewUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.primaryColor));
         ViewUtils.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.backgroundColor));
         super.onCreate(savedInstanceState);
     }

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="accentColor">#2E3235</color>
-    <color name="accentColorSecondary">#242729</color>
-    <color name="backgroundColor">#161617</color>
-    <color name="accentColorDisabled">#4A6173</color>
-    <color name="windowBackgroundColor">#2D8DD8</color>
-    <color name="textColor">#FFFFFFFF</color>
-    <color name="textColorDisabled">#AAAAAA</color>
-    <color name="textColorSecondary">#D8D6D6</color>
-    <color name="textColorOnWhite">#1B1B1B</color>
-    <color name="white">#ffffff</color>
-    <color name="red">#D11A0D</color>
-    <color name="green">#009407</color>
+    <color name="backgroundColor">#11131B</color>
+    <color name="backgroundSecondaryColor">#323542</color>
+    <color name="primaryColor">#304FFE</color>
+    <color name="primarySecondaryColor">#2A44D3</color>
+    <color name="textColor">#F4F4F4</color>
+    <color name="textSecondaryColor">#D8D8D8</color>
+    <color name="textDisabledColor">#979797</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#D50000</color>
+    <color name="yellow">#D5C000</color>
 </resources>

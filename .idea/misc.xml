@@ -4,25 +4,69 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable-v24/background_button.xml" value="0.16718146718146717" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/attachment_icon.xml" value="0.106640625" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button.xml" value="0.16718146718146717" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button_default.xml" value="0.16718146718146717" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button_focused.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_button_pressed.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_round_left.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_round_top.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/background_seek_bar_translucent.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/cancel_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/checklist_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/circle.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/circle_bg_without_padding.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/download_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/edit_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/error_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/failed_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/ic_received_24.xml" value="0.169140625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/image_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/info_icon.xml" value="0.106640625" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/loading_bg.xml" value="0.121875" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/mic_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/music_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/question_icon.xml" value="0.106640625" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/seek_bar_background_fill.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/send_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/start_empty.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/start_fill.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/user_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/video_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/warning_icon.xml" value="0.106640625" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/drawable/white_ripple.xml" value="0.106640625" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/activity_connection.xml" value="0.1" />
-        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/activity_main.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/activity_vr_player.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/app_bar.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/attachment_item.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/base_dialog.xml" value="0.2" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/base_dialog_choise_layout.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/content_main.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/device_list_binder.xml" value="0.22" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/file_item.xml" value="0.25" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/file_item_holder.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/file_layout_view.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/file_picker_layout.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/image_preview.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/main.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/media_format_dialog.xml" value="0.15703125" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/media_picker_image_selector.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/media_picker_path_selector.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/media_picker_selector.xml" value="0.18" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/message_input_layout.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/record_view_layout.xml" value="0.22" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/space_item_view.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_activity.xml" value="0.11171875" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_picker_holder.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_picker_layout.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_player_layout.xml" value="0.1" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/layout/video_ui.xml" value="0.11171875" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/menu/activity_main_drawer.xml" value="0.15703125" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/menu/menu_main.xml" value="0.15703125" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/app/src/main/res/xml/vdownload_files_public.xml" value="0.15703125" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Client/googlevr/src/main/res/layout/video_ui.xml" value="0.25" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Plater/app/src/main/res/drawable/circle.xml" value="0.10364583333333334" />
         <entry key="..\:/Users/LineR/AndroidStudioProjects/VR360Plater/app/src/main/res/drawable/empty_tall_divider.xml" value="0.16770833333333332" />

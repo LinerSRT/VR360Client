@@ -1,5 +1,4 @@
 package ru.liner.vr360client.utils;
-
 import static android.content.Context.WINDOW_SERVICE;
 
 import android.app.Activity;
@@ -23,13 +22,13 @@ public class VrModeChanger extends Worker{
     public VrModeChanger(Activity activity, VrView vrView) {
         this.activity = activity;
         this.vrView = vrView;
-       this. windowManager = (WindowManager) activity.getSystemService(WINDOW_SERVICE);
+        this. windowManager = (WindowManager) activity.getSystemService(WINDOW_SERVICE);
     }
 
     @Override
     public void execute() {
         if (vrView.isPrepared()) {
-           activity.runOnUiThread(() -> {
+            activity.runOnUiThread(() -> {
                 int rotation = windowManager.getDefaultDisplay().getRotation();
                 activity.setRequestedOrientation((rotation == 0 || rotation == 1) ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
                 vrView.setSensorMotion(true);
@@ -39,12 +38,9 @@ public class VrModeChanger extends Worker{
                 vrView.setCameraReset(true);
                 vrView.setViewChanged(true);
                 if (vrView.isCameraReset()) {
-                    stop();
                     vrView.seekTo(0);
                     if(callback != null)
                         callback.onVRPrepared(vrView);
-                } else {
-                    execute();
                 }
             });
         }

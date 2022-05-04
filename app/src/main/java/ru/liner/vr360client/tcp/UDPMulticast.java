@@ -8,27 +8,31 @@ import java.net.MulticastSocket;
 import java.net.SocketException;
 
 public class UDPMulticast implements Runnable {
-    private final InetAddress inetAddress;
-    private final MulticastSocket multicastSocket;
+    private InetAddress inetAddress;
+    private MulticastSocket multicastSocket;
     private IMulticastCallback multicastCallback;
     private boolean isRunning;
-    private final Thread multicastThread;
-    private final String host;
+    private Thread multicastThread;
+    private String host;
     private int port;
-    private final int bufferSize;
+    private int bufferSize;
 
-    public UDPMulticast(String host, int port) throws IOException {
+    public UDPMulticast(String host, int port){
         this(host, port, 1024 * 8);
     }
 
-    public UDPMulticast(String host, int port, int bufferSize) throws IOException {
-        this.host = host;
-        this.port = port;
-        this.bufferSize = bufferSize;
-        this.multicastThread = new Thread(this);
-        this.multicastSocket = new MulticastSocket(port);
-        this.multicastSocket.setReuseAddress(true);
-        this.inetAddress = InetAddress.getByName(host);
+    public UDPMulticast(String host, int port, int bufferSize){
+        try {
+            this.host = host;
+            this.port = port;
+            this.bufferSize = bufferSize;
+            this.multicastThread = new Thread(this);
+            this.multicastSocket = new MulticastSocket(port);
+            this.multicastSocket.setReuseAddress(true);
+            this.inetAddress = InetAddress.getByName(host);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void start() {
@@ -84,7 +88,7 @@ public class UDPMulticast implements Runnable {
             port = multicastSocket.getLocalPort();
             multicastSocket.joinGroup(inetAddress);
             if (multicastCallback != null)
-                multicastCallback.onStarted();
+                multicastCallback.onStarted(this);
             while (isRunning) {
                 DatagramPacket packet = new DatagramPacket(new byte[bufferSize], bufferSize);
                 try {
@@ -98,8 +102,8 @@ public class UDPMulticast implements Runnable {
                 byte[] data = new byte[packet.getLength() - packet.getOffset()];
                 System.arraycopy(packet.getData(), packet.getOffset(), data, 0, data.length);
                 if (multicastCallback != null) {
-                    multicastCallback.onReceived(data);
-                    multicastCallback.onReceived(new String(data));
+                    multicastCallback.onReceived(this, data);
+                    multicastCallback.onReceived(this, new String(data));
                 }
             }
             if (!isClosed()) {
@@ -107,7 +111,7 @@ public class UDPMulticast implements Runnable {
             }
             stop();
             if (multicastCallback != null)
-                multicastCallback.onStopped();
+                multicastCallback.onStopped(this);
         } catch (Exception e) {
             e.printStackTrace();
             stop();

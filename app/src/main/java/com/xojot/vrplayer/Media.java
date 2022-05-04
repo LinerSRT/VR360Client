@@ -150,6 +150,7 @@ public class Media implements MediaController.MediaPlayerControl, MediaPlayer.On
     public void start() {
         if ( mediaPlayer != null)
             mediaPlayer.start();
+        
     }
 
     @Override

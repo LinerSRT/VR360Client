@@ -26,11 +26,24 @@
             android:name="ru.liner.vr360client.activity.MainActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.download.library.DownloadFileProvider"
+            android:authorities="${applicationId}.DownloadFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/download_files_public"/>
+        </provider>
+
+     
     </application>
 </manifest>
