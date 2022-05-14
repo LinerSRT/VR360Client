@@ -76,7 +76,6 @@ public abstract class HostRetriever extends Worker {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             stop();
         }
     }

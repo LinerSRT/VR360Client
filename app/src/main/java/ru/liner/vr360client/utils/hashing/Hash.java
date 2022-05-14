@@ -18,7 +18,6 @@ import ru.liner.vr360client.utils.InputStreams;
  * @created : 22.04.2022, пятница
  **/
 public class Hash {
-    @Nullable
     public static String get(@NonNull File file, @HashAlgorithm String hashAlgorithm){
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(hashAlgorithm);
@@ -34,7 +33,7 @@ public class Hash {
             return stringBuilder.toString().toUpperCase(Locale.getDefault());
         } catch (IOException | NoSuchAlgorithmException e){
             e.printStackTrace();
-            return null;
+            return "";
         }
     }
 }

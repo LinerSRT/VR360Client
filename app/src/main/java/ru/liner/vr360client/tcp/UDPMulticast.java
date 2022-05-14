@@ -68,8 +68,7 @@ public class UDPMulticast implements Runnable {
         try {
             multicastSocket.send(new DatagramPacket(bytes, 0, bytes.length, inetAddress, port));
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
             return false;
         }
     }

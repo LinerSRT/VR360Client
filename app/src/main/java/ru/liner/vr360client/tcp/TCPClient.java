@@ -36,50 +36,52 @@ public class TCPClient {
         try {
             socket = new Socket();
             socket.connect(new InetSocketAddress(host, port), 2000);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onConnected(socket);
-                    connected = true;
-                    try {
-                        InputStream inputStream = socket.getInputStream();
-                        byte[] content = new byte[2048];
-                        if (inputStream != null) {
-                            while (true) {
-                                try {
-                                    int bytesRead = inputStream.read(content);
-                                    if (bytesRead == -1)
-                                        break;
-                                    callback.onReceived(socket, Arrays.copyOfRange(content, 0, bytesRead));
-                                    callback.onReceived(socket, new String(Arrays.copyOfRange(content, 0, bytesRead)));
-                                } catch (Exception e) {
+            new Thread(() -> {
+                callback.onConnected(socket);
+                connected = true;
+                try {
+                    InputStream inputStream = socket.getInputStream();
+                    byte[] content = new byte[2048];
+                    if (inputStream != null) {
+                        while (true) {
+                            try {
+                                int bytesRead = inputStream.read(content);
+                                if (bytesRead == -1)
                                     break;
-                                }
+                                callback.onReceived(socket, Arrays.copyOfRange(content, 0, bytesRead));
+                                callback.onReceived(socket, new String(Arrays.copyOfRange(content, 0, bytesRead)));
+                            } catch (Exception e) {
+                                break;
                             }
                         }
-                    } catch (IOException e){
-                        e.printStackTrace();
                     }
-                    try {
-                        socket.close();
-                        callback.onDisconnected(socket);
-                        connected = false;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
+                } catch (IOException e){
+                    e.printStackTrace();
                 }
+                try {
+                    socket.close();
+                    callback.onDisconnected(socket);
+                    connected = false;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callback.onDisconnected(socket);
+                    connected = false;
+                }
+
             }).start();
             callback.onStarted(socket);
         } catch (Exception e) {
 
         }
     }
-
     public void stop() {
+        stop(true);
+    }
+    public void stop(boolean notify) {
         if (socket != null && socket.isConnected()) {
             try {
                 socket.close();
+                if(notify)
                 callback.onStopped(socket);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -111,13 +113,11 @@ public class TCPClient {
     public interface Callback {
         @CallSuper
         default void onStarted(Socket socket) {
-            Log.d(TAG, "onStarted: "+socket.toString());
             
         }
 
         @CallSuper
         default void onConnected(Socket socket) {
-            Log.d(TAG, "onConnected: "+socket.toString());
 
         }
 
@@ -127,20 +127,20 @@ public class TCPClient {
 
         @CallSuper
         default void onReceived(Socket socket, String string) {
-            if(!string.equals("check_ping"))
+            if(socket != null)
             Log.d(TAG, "onReceived: "+socket.getInetAddress().toString()+" | "+string);
 
         }
 
         @CallSuper
         default void onDisconnected(Socket socket) {
-            Log.d(TAG, "onDisconnected: "+socket.toString());
+
 
         }
 
         @CallSuper
         default void onStopped(Socket socket) {
-            Log.d(TAG, "onStopped: "+socket.toString());
+
         }
     }
 }
